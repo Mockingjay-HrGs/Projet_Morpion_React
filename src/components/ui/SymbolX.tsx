@@ -1,4 +1,4 @@
-import xIcon from '../../assets/cross.svg'; // adapte l'extension si besoin (.webp)
+import xIcon from '../../assets/cross.svg';
 
 interface SymbolProps {
     size?: number;

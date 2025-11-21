@@ -1,4 +1,4 @@
-import oIcon from '../../assets/circle.svg'; // adapte l'extension si besoin
+import oIcon from '../../assets/circle.svg';
 
 interface SymbolProps {
     size?: number;
