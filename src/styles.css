@@ -1,0 +1,647 @@
+:root {
+    --color-primary: #36cdca; /* X */
+    --color-secondary: #f6bc47; /* O */
+    --color-secondary-shadow: #ce8e14;
+    --color-gray-light: #b6cad3;
+    --color-gray-light-shadow: #7d9aa7;
+    --color-gray-medium: #284551;
+    --color-gray-medium-shadow: #132c36;
+    --color-gray-dark: #203741;
+
+    --radius-button: 0.9rem;
+    --shadow-offset: 6px;
+
+    --font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--color-gray-dark);
+    color: #f5f7fa;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-main {
+    flex: 1;
+    padding: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* NAVBAR */
+
+.nav {
+    background-color: var(--color-gray-medium);
+    box-shadow: 0 2px 0 var(--color-gray-medium-shadow);
+}
+
+.nav__content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__logo {
+    display: flex;
+    gap: 0.35rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__links a {
+    color: var(--color-gray-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.nav__links a:hover {
+    color: #ffffff;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-gray-light);
+    background-color: var(--color-gray-medium);
+    box-shadow: 0 -2px 0 var(--color-gray-medium-shadow);
+}
+
+/* BOUTONS GÉNÉRIQUES */
+
+.btn {
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--radius-button);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: 0 var(--shadow-offset) 0 rgba(0, 0, 0, 0.35);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+}
+
+.btn--primary {
+    background-color: var(--color-secondary);
+    color: #1b1f23;
+    box-shadow: 0 var(--shadow-offset) 0 var(--color-secondary-shadow);
+}
+
+.btn--secondary {
+    background-color: var(--color-gray-light);
+    color: #1b1f23;
+    box-shadow: 0 var(--shadow-offset) 0 var(--color-gray-light-shadow);
+}
+
+.btn--secondary-light {
+    background-color: var(--color-gray-light);
+    color: #1b1f23;
+    box-shadow: 0 var(--shadow-offset) 0 var(--color-gray-light-shadow);
+}
+
+.btn--ghost {
+    background-color: transparent;
+    color: var(--color-gray-light);
+    box-shadow: 0 var(--shadow-offset) 0 transparent;
+    border: 2px solid var(--color-gray-light);
+}
+
+.btn:hover {
+    filter: brightness(0.9);
+}
+
+.btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 calc(var(--shadow-offset) - 2px) 0 rgba(0, 0, 0, 0.35);
+}
+
+/*  HOMEPAGE / ÉCRAN D'ACCUEIL  */
+
+.home {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__card {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    background-color: var(--color-gray-medium);
+    border-radius: 1.5rem;
+    box-shadow: 0 16px 0 var(--color-gray-medium-shadow);
+    padding: 1.75rem 2rem 2rem;
+}
+
+
+/* Header de la carte */
+
+.home__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.home__logo {
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gray-light);
+}
+
+.home__title {
+    font-size: 1.7rem;
+    margin: 0 0 0.15rem;
+}
+
+.home__subtitle {
+    margin: 0;
+    color: var(--color-gray-light);
+    font-size: 0.9rem;
+}
+
+/* Formulaire */
+
+.home__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.home__section {
+    background-color: #20313a;
+    border-radius: 1.1rem;
+    padding: 1rem 1.1rem;
+
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+}
+
+.home__section--opponent {
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home__section--variant {
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home__section-title {
+    margin: 0 0 0.6rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-gray-light);
+}
+
+/* Segmented controls */
+
+.home__segmented {
+    display: flex;
+    background-color: var(--color-gray-dark);
+    border-radius: 0.9rem;
+    padding: 0.25rem;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.home__segmented--wide {
+    max-width: 260px;
+}
+
+.home__segmented-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--color-gray-light);
+    padding: 0.55rem 0.8rem;
+    border-radius: 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease,
+    transform 0.08s ease;
+}
+
+.home__segmented-btn--active {
+    background-color: var(--color-gray-medium);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Texte dessous les segments */
+
+.home__hint {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-gray-light);
+    overflow: hidden;
+}
+
+
+/* Champs textes */
+
+.home__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+}
+
+.home__field-label {
+    font-size: 0.85rem;
+    color: var(--color-gray-light);
+}
+
+.home__field-required {
+    color: var(--color-secondary);
+    margin-left: 0.25rem;
+}
+
+.home__input {
+    border-radius: 0.9rem;
+    border: 1px solid var(--color-gray-medium-shadow);
+    padding: 0.6rem 0.75rem;
+    background-color: #18252c;
+    color: #f5f7fa;
+    font-size: 0.9rem;
+}
+
+.home__input::placeholder {
+    color: #7d9aa7;
+}
+
+/* Infos et erreurs */
+
+.home__info {
+    margin: 0.55rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-gray-light);
+}
+
+.home__info strong {
+    font-weight: 600;
+}
+
+.home__error {
+    margin: 0.6rem 0 0;
+    font-size: 0.8rem;
+    color: #ff9a9a;
+}
+
+/* Résumé & bouton */
+
+.home__summary {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--color-gray-light);
+}
+
+.home__summary span {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+}
+
+.home__summary strong {
+    margin-left: 0.25rem;
+}
+
+.home__submit {
+    margin-top: 0.8rem;
+    width: 100%;
+    justify-content: center;
+}
+
+/* LOGO XO */
+
+.logo-xo {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+/* PAGE DE JEU */
+
+.game {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* HEADER */
+
+.game__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.game__turn-badge {
+    background-color: var(--color-gray-medium);
+    border-radius: var(--radius-button);
+    padding: 0.7rem 2.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    box-shadow: 0 4px 0 var(--color-gray-medium-shadow);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-gray-light);
+}
+
+.game__turn-badge img {
+    display: block;
+}
+
+/* Bouton icône (restart) */
+
+.icon-button {
+    border: none;
+    background-color: var(--color-gray-light);
+    box-shadow: 0 4px 0 var(--color-gray-light-shadow);
+    border-radius: var(--radius-button);
+    width: 3rem;
+    height: 3rem;
+    padding: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon-button img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.icon-button:hover {
+    filter: brightness(0.9);
+}
+
+.icon-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--color-gray-light-shadow);
+}
+
+/* GRILLE DE JEU */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 480px;
+}
+
+.board__cell {
+    background-color: var(--color-gray-medium);
+    border-radius: 1.4rem;
+    border: none;
+    padding: 0;
+    box-shadow: 0 14px 0 var(--color-gray-medium-shadow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;  /* cases carrées */
+    transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+}
+
+
+.board__cell:hover {
+    filter: brightness(0.9);
+}
+
+.board__cell:active {
+    transform: translateY(2px);
+    box-shadow: 0 9px 0 var(--color-gray-medium-shadow);
+}
+
+/* Animation symbole qui va disparaître (variante 3 coups) */
+
+.board__cell--will-disappear img,
+.board__cell--will-disappear .symbol {
+    animation: will-disappear 1s ease-in-out infinite alternate;
+    opacity: 0.6;
+}
+
+@keyframes will-disappear {
+    from {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    to {
+        transform: scale(0.85);
+        opacity: 0.3;
+    }
+}
+
+/* CARTES DE SCORE EN BAS */
+
+.game__bottom-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 480px;
+    margin-top: 1.6rem;
+}
+
+
+.score-card {
+    flex: 1 1 0;
+    border-radius: 1rem;
+    padding: 0.9rem 0.75rem;
+    text-align: center;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.score-card__label {
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.score-card__value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* couleurs */
+
+.score-card--x {
+    background-color: var(--color-primary);
+    color: #1b1f23;
+    box-shadow: 0 6px 0 #1b8886;
+}
+
+.score-card--o {
+    background-color: var(--color-secondary);
+    color: #1b1f23;
+    box-shadow: 0 6px 0 var(--color-secondary-shadow);
+}
+
+.score-card--ties {
+    background-color: var(--color-gray-light);
+    color: #1b1f23;
+    box-shadow: 0 6px 0 var(--color-gray-light-shadow);
+}
+
+/* MODALE DE FIN DE MANCHE */
+
+.game__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game__modal {
+    background-color: var(--color-gray-medium);
+    box-shadow: 0 8px 0 var(--color-gray-medium-shadow);
+    border-radius: 1rem;
+    padding: 1.8rem 2.2rem;
+    text-align: center;
+    max-width: 480px;
+    width: 90%;
+}
+
+.game__modal-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-gray-light);
+    margin-bottom: 0.75rem;
+}
+
+.game__modal-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.game__modal-main--tie {
+    justify-content: center;
+}
+
+.game__modal-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* Boutons modale */
+
+.game__modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* CLASSEMENT */
+
+.leaderboard__title {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.leaderboard__subtitle {
+    color: var(--color-gray-light);
+    margin-bottom: 1rem;
+}
+
+.leaderboard__empty {
+    color: var(--color-gray-light);
+}
+
+.leaderboard__table-wrapper {
+    overflow-x: auto;
+}
+
+.leaderboard__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.leaderboard__table th,
+.leaderboard__table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.leaderboard__table thead {
+    background-color: var(--color-gray-medium);
+}
+
+.leaderboard__table tbody tr:nth-child(odd) {
+    background-color: #18252c;
+}
