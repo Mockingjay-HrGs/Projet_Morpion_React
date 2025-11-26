@@ -1,9 +1,4 @@
-import type {
-    CellValue,
-    GameVariant,
-    MoveOrder,
-    PlayerSymbol,
-} from '../../types/game';
+import type {CellValue, GameVariant, MoveOrder, PlayerSymbol,} from '../../types/game';
 import { SymbolX } from '../ui/SymbolX';
 import { SymbolO } from '../ui/SymbolO';
 

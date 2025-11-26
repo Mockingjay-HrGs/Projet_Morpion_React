@@ -44,7 +44,7 @@ export interface GameState {
     variant: GameVariant;
     opponentType: OpponentType;
     players: Record<PlayerSymbol, PlayerInfo>;
-    board: CellValue[];          // 9 cases
+    board: CellValue[];
     currentPlayer: PlayerSymbol;
     isFinished: boolean;
     winner: PlayerSymbol | 'tie' | null;

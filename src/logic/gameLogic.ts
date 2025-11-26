@@ -47,7 +47,6 @@ export function playMove(
         return { board: newBoard, moveOrder };
     }
 
-    // Variante "three-moves"
     const newBoard = [...board];
     const newMoveOrder: MoveOrder = {
         X: [...moveOrder.X],

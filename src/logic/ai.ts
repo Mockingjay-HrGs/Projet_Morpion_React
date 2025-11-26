@@ -11,101 +11,11 @@ function getOpponent(player: PlayerSymbol): PlayerSymbol {
     return player === 'X' ? 'O' : 'X';
 }
 
-function evaluateBoardFor(player: PlayerSymbol, board: CellValue[]): number {
-    const result = checkWinner(board);
-
-    if (result.winner === player) return 10;
-    if (result.winner === getOpponent(player)) return -10;
-    if (result.winner === 'tie') return 0;
-    return 0;
-}
-
-function minimax(
-    board: CellValue[],
-    player: PlayerSymbol,
-    current: PlayerSymbol,
-    depth: number,
-    isMaximizing: boolean,
-): number {
-    const score = evaluateBoardFor(player, board);
-    const winnerInfo = checkWinner(board);
-
-    if (winnerInfo.winner !== null || depth === 0) {
-        return score;
-    }
-
-    const moves = getAvailableMoves(board);
-
-    if (isMaximizing) {
-        let best = -Infinity;
-        for (const idx of moves) {
-            const newBoard = [...board];
-            newBoard[idx] = current;
-            const value = minimax(
-                newBoard,
-                player,
-                getOpponent(current),
-                depth - 1,
-                false,
-            );
-            if (value > best) best = value;
-        }
-        return best;
-    } else {
-        let best = Infinity;
-        for (const idx of moves) {
-            const newBoard = [...board];
-            newBoard[idx] = current;
-            const value = minimax(
-                newBoard,
-                player,
-                getOpponent(current),
-                depth - 1,
-                true,
-            );
-            if (value < best) best = value;
-        }
-        return best;
-    }
-}
-
-function getBestMoveClassic(board: CellValue[], cpuSymbol: PlayerSymbol): number {
-    const moves = getAvailableMoves(board);
-
-    if (moves.length === 9 && board.every((c) => c === null)) {
-        return 4;
-    }
-
-    let bestScore = -Infinity;
-    let bestMove = moves[0];
-
-    for (const idx of moves) {
-        const newBoard = [...board];
-        newBoard[idx] = cpuSymbol;
-        const score = minimax(
-            newBoard,
-            cpuSymbol,
-            getOpponent(cpuSymbol),
-            8,
-            false,
-        );
-        if (score > bestScore) {
-            bestScore = score;
-            bestMove = idx;
-        }
-    }
-
-    return bestMove;
-}
-
-function getHeuristicMoveThreeMoves(
-    board: CellValue[],
-    current: PlayerSymbol,
-): number {
+function getHeuristicMove(board: CellValue[], current: PlayerSymbol): number {
     const moves = getAvailableMoves(board);
     const opponent = getOpponent(current);
 
-    // 1. Gagner si possible
+    // 1. Coup gagnant
     for (const idx of moves) {
         const newBoard = [...board];
         newBoard[idx] = current;
@@ -115,7 +25,7 @@ function getHeuristicMoveThreeMoves(
         }
     }
 
-    // 2. Bloquer si l’adversaire peut gagner
+    // 2. Bloquer victoire adverse
     for (const idx of moves) {
         const newBoard = [...board];
         newBoard[idx] = opponent;
@@ -134,18 +44,14 @@ function getHeuristicMoveThreeMoves(
         return corners[Math.floor(Math.random() * corners.length)];
     }
 
-    // 5. Sinon random
+    // 5. Sinon, random
     return moves[Math.floor(Math.random() * moves.length)];
 }
 
 export function getCpuMove(game: GameState): number | null {
-    const { board, currentPlayer, variant } = game;
+    const { board, currentPlayer } = game;
     const moves = getAvailableMoves(board);
     if (moves.length === 0) return null;
 
-    if (variant === 'classic') {
-        return getBestMoveClassic(board, currentPlayer);
-    }
-
-    return getHeuristicMoveThreeMoves(board, currentPlayer);
+    return getHeuristicMove(board, currentPlayer);
 }
